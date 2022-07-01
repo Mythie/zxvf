@@ -7,12 +7,12 @@ export default defineConfig({
       bundler: 'vite',
     },
 
-    specPattern: '**/*.integration.spec.ts',
+    specPattern: '**/*.integration.spec.{ts,tsx}',
   },
 
   e2e: {
     baseUrl: 'http://localhost:3000',
-    specPattern: '**/*.e2e.spec.ts',
+    specPattern: '**/*.e2e.spec.{ts,tsx}',
 
     setupNodeEvents(_on, _config) {
       // implement node event listeners here

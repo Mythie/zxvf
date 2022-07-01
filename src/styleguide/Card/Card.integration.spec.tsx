@@ -1,18 +1,17 @@
 /// <reference types="cypress" />
 
 import { mount } from 'cypress/vue';
-import { h } from 'vue';
 
-import Card from './Card.component.vue';
+import { CardComponent } from './Card.component';
 
-describe('Card.component.vue', () => {
+describe('Card.component.tsx', () => {
   it('should render correctly', () => {
-    mount(Card, {
+    mount(CardComponent, {
       props: {
         title: 'Hello World',
       },
       slots: {
-        default: () => h('p', 'My content'),
+        default: () => <p>My content</p>,
       },
     });
 

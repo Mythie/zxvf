@@ -1,20 +1,23 @@
 // Vitest Snapshot v1
 
-exports[`Card.component.vue > should render correctly 1`] = `
+exports[`Card.component.tsx > should render correctly 1`] = `
 <div
   class="w-full p-5 bg-white border rounded-md shadow dark:bg-slate-700 dark:text-white border-gray-50 dark:border-slate-500"
 >
-  <!--v-if-->
+  <h4
+    class="pb-3 text-lg font-medium leading-tight"
+  >
+    
+  </h4>
   <div
     class="leading-relaxed"
   >
-    
-    
+    <!---->
   </div>
 </div>
 `;
 
-exports[`Card.component.vue > should render correctly with props 1`] = `
+exports[`Card.component.tsx > should render correctly with props 1`] = `
 <div
   class="w-full p-5 bg-white border rounded-md shadow dark:bg-slate-700 dark:text-white border-gray-50 dark:border-slate-500"
 >
@@ -26,13 +29,12 @@ exports[`Card.component.vue > should render correctly with props 1`] = `
   <div
     class="leading-relaxed"
   >
-    
-    
+    <!---->
   </div>
 </div>
 `;
 
-exports[`Card.component.vue > should render correctly with props and slot 1`] = `
+exports[`Card.component.tsx > should render correctly with props and slot 1`] = `
 <div
   class="w-full p-5 bg-white border rounded-md shadow dark:bg-slate-700 dark:text-white border-gray-50 dark:border-slate-500"
 >

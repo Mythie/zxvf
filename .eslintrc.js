@@ -25,7 +25,6 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-recommended',
-    'plugin:storybook/recommended',
     'plugin:prettier/recommended',
   ],
 

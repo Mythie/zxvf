@@ -1,17 +1,18 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
+import { h } from 'vue';
 
-import Card from './Card.component.vue';
+import { CardComponent } from './Card.component';
 
-describe('Card.component.vue', () => {
+describe('Card.component.tsx', () => {
   it('should render correctly', () => {
-    const wrapper = mount(Card);
+    const wrapper = mount(CardComponent);
 
     expect(wrapper.element).toMatchSnapshot();
   });
 
   it('should render correctly with props', () => {
-    const wrapper = mount(Card, {
+    const wrapper = mount(CardComponent, {
       propsData: {
         title: 'My Title',
       },
@@ -21,12 +22,12 @@ describe('Card.component.vue', () => {
   });
 
   it('should render correctly with props and slot', () => {
-    const wrapper = mount(Card, {
+    const wrapper = mount(CardComponent, {
       propsData: {
         title: 'My Title',
       },
       slots: {
-        default: '<p>My content</p>',
+        default: () => h('p', 'My content'),
       },
     });
 
