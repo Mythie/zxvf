@@ -1,3 +1,8 @@
+const { mergeConfig } = require('vite');
+
+const TSConfigPaths = require('vite-tsconfig-paths').default;
+const ViteIcons = require('unplugin-icons/vite');
+
 module.exports = {
   framework: '@storybook/vue3',
 
@@ -18,5 +23,9 @@ module.exports = {
     storyStoreV7: true,
   },
 
-  viteFinal: (config) => config,
+  viteFinal: (config) => {
+    return mergeConfig(config, {
+      plugins: [TSConfigPaths({ loose: true }), ViteIcons({ compiler: 'vue3', autoInstall: true })],
+    });
+  },
 };

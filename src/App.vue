@@ -4,8 +4,6 @@ import './App.css';
 import { useHead } from '@vueuse/head';
 import { RouterView } from 'vue-router';
 
-import IconAccessibility from '~icons/carbon/accessibility';
-
 useHead({
   title: 'Hello World',
 });
