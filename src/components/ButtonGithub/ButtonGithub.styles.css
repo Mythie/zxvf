@@ -1,0 +1,23 @@
+.bg-github-black {
+  background-color: rgba(36, 41, 46);
+}
+
+.hover\:bg-github-black-lightest:hover {
+  background-color: rgba(36, 41, 46, 5%);
+}
+
+.focus\:bg-github-black-lightest:focus {
+  background-color: rgba(36, 41, 46, 15%);
+}
+
+.ring-github-black {
+  --tw-ring-color: rgba(36, 41, 46);
+}
+
+.border-github-black {
+  border-color: rgba(36, 41, 46);
+}
+
+.text-github-black {
+  color: rgba(36, 41, 46);
+}

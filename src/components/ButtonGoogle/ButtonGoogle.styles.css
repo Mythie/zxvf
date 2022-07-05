@@ -1,0 +1,23 @@
+.bg-google-red {
+  background-color: rgba(222, 82, 70);
+}
+
+.hover\:bg-google-red-lightest:hover {
+  background-color: rgba(222, 82, 70, 0.05);
+}
+
+.focus\:bg-google-red-lightest:focus {
+  background-color: rgba(222, 82, 70, 0.15);
+}
+
+.ring-google-red {
+  --tw-ring-color: rgba(222, 82, 70);
+}
+
+.border-google-red {
+  border-color: rgba(222, 82, 70);
+}
+
+.text-google-red {
+  color: rgba(222, 82, 70);
+}

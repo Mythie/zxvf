@@ -1,0 +1,53 @@
+// Vitest Snapshot v1
+
+exports[`NativeInput.component.tsx > should render correctly 1`] = `
+<div>
+  <div
+    class="relative"
+  >
+    <input
+      class="w-full border transition-color duration-300 focus:outline focus:outline-offset-[-1px] focus:outline-2 focus:outline-blue-500 py-2 px-3 text-sm text-gray-700 rounded-md"
+      type="text"
+    />
+    <!---->
+    <!---->
+  </div>
+  
+</div>
+`;
+
+exports[`NativeInput.component.tsx > should render correctly with props 1`] = `
+<div>
+  <div
+    class="relative"
+  >
+    <input
+      class="w-full border transition-color duration-300 focus:outline focus:outline-offset-[-1px] focus:outline-2 focus:outline-blue-500 py-2 px-3 text-sm text-gray-700 rounded-md"
+      id="my-id"
+      type="password"
+    />
+    <!---->
+    <!---->
+  </div>
+  
+</div>
+`;
+
+exports[`NativeInput.component.tsx > should render correctly with props and slot 1`] = `
+<div
+  title="My Title"
+>
+  <div
+    class="relative"
+  >
+    <input
+      class="w-full border transition-color duration-300 focus:outline focus:outline-offset-[-1px] focus:outline-2 focus:outline-blue-500 py-2 px-3 text-sm text-gray-700 rounded-md"
+      title="My Title"
+      type="text"
+    />
+    <!---->
+    <!---->
+  </div>
+  
+</div>
+`;

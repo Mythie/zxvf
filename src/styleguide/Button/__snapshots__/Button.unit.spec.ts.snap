@@ -1,0 +1,89 @@
+// Vitest Snapshot v1
+
+exports[`Button.component.tsx > should render correctly 1`] = `
+<button
+  class="transition-color duration-300 ring-offset-2 focus:ring-2 py-3 px-5 text-sm text-white rounded-md"
+  type="button"
+>
+  <div
+    class="flex items-center justify-center gap-x-2"
+  >
+    <!---->
+    <span>
+      <!---->
+    </span>
+    <!---->
+  </div>
+</button>
+`;
+
+exports[`Button.component.tsx > should render correctly with slot 1`] = `
+<button
+  class="transition-color duration-300 ring-offset-2 focus:ring-2 py-3 px-5 text-sm text-white rounded-md"
+  type="button"
+>
+  <div
+    class="flex items-center justify-center gap-x-2"
+  >
+    <!---->
+    <span>
+      
+      My Text
+      
+    </span>
+    <!---->
+  </div>
+</button>
+`;
+
+exports[`Button.component.vue > should render correctly 1`] = `
+<button
+  class="transition-color duration-300 py-3 px-5 text-sm text-white rounded-md"
+  type="button"
+>
+  <div
+    class="flex items-center justify-center gap-x-2"
+  >
+    <span
+      class="mr-2"
+    >
+      <!---->
+    </span>
+    <span>
+      <!---->
+    </span>
+    <span
+      class="mr-2"
+    >
+      <!---->
+    </span>
+  </div>
+</button>
+`;
+
+exports[`Button.component.vue > should render correctly with slot 1`] = `
+<button
+  class="transition-color duration-300 py-3 px-5 text-sm text-white rounded-md"
+  type="button"
+>
+  <div
+    class="flex items-center justify-center gap-x-2"
+  >
+    <span
+      class="mr-2"
+    >
+      <!---->
+    </span>
+    <span>
+      
+      My Text
+      
+    </span>
+    <span
+      class="mr-2"
+    >
+      <!---->
+    </span>
+  </div>
+</button>
+`;

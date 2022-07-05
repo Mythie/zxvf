@@ -1,5 +1,6 @@
 import { defineComponent, ref, toRefs } from 'vue';
 
+import { Button } from '~/styleguide/Button';
 import { Card } from '~/styleguide/Card';
 
 export const HelloWorldComponent = defineComponent({
@@ -46,14 +47,15 @@ export const HelloWorldComponent = defineComponent({
           </a>
         </p>
 
-        <button
+        <Button
+          variant="text"
           type="button"
           onClick={() => {
             count.value += 1;
           }}
         >
           count is: {count.value}
-        </button>
+        </Button>
         <p class="leading-loose">
           Edit <code>components/HelloWorld/HelloWorld.tsx</code> to test hot module replacement.
         </p>

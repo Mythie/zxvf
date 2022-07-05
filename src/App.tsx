@@ -1,6 +1,7 @@
 import { useHead } from '@vueuse/head';
 import { defineComponent, Suspense } from 'vue';
-import { RouterView } from 'vue-router';
+
+import { AppView } from './AppView';
 
 import './App.css';
 
@@ -13,7 +14,7 @@ export const App = defineComponent({
     });
 
     return () => (
-      <main class="flex flex-col min-h-screen bg-gray-50">
+      <main class="flex min-h-screen flex-col bg-gray-50">
         <Suspense>
           {{
             fallback: () => (
@@ -26,7 +27,7 @@ export const App = defineComponent({
               </div>
             ),
 
-            default: () => <RouterView class="flex-1" />,
+            default: () => <AppView class="flex-1" />,
           }}
         </Suspense>
       </main>

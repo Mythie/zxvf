@@ -18,7 +18,7 @@ export const CardComponent = defineComponent({
     const { title } = toRefs(props);
 
     return () => (
-      <div class="w-full p-5 bg-white border rounded-md shadow dark:bg-slate-700 dark:text-white border-gray-50 dark:border-slate-500">
+      <div class="w-full rounded-md border border-gray-50 bg-white p-5 shadow dark:border-slate-500 dark:bg-slate-700 dark:text-white">
         {title && <h4 class="pb-3 text-lg font-medium leading-tight">{title.value}</h4>}
 
         <div class="leading-relaxed">{slots.default && slots.default()}</div>

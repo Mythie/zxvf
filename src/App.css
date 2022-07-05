@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 a {
-  color: #42b983;
+  @apply text-blue-700;
 }
 
 label {
