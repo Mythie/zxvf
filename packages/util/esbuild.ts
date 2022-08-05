@@ -5,8 +5,8 @@ const isWatching = !!process.env.WATCH;
 build({
   entryPoints: ['./src/index.ts'],
   outdir: './dist',
-  format: 'cjs',
-  platform: 'node',
+  format: 'esm',
+  platform: 'neutral',
   sourcemap: true,
   bundle: true,
   watch: isWatching,

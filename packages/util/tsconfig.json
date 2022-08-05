@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "ES2018",
     "useDefineForClassFields": true,
     "declaration": true,
-    "sourceMap": true,
-    "module": "esnext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "strict": true,
     "isolatedModules": true,
     "useUnknownInCatchVariables": false,
     "esModuleInterop": true,
+    "emitDeclarationOnly": true,
     "lib": [
       "esnext",
       "dom"

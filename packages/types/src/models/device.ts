@@ -1,9 +1,14 @@
 import { z } from 'zod';
 
+export const DEVICE_TYPES = ['pos', 'order-tracker'] as const;
+
+export type TDeviceType = typeof DEVICE_TYPES[number];
+
 export const ZBaseDevice = z.object({
   name: z.string().min(1),
   description: z.string(),
   passcode: z.string().min(1),
+  type: z.enum(DEVICE_TYPES),
 });
 
 export type TBaseDevice = z.infer<typeof ZBaseDevice>;

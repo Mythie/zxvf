@@ -13,6 +13,7 @@
     "firebase:emulate": "firebase emulators:start",
     "run:app": "lerna run --scope @orderdi/app",
     "run:functions": "lerna run --scope @orderdi/functions",
+    "run:util": "lerna run --scope @orderdi/util",
     "run:types": "lerna run --scope @orderdi/types"
   },
   "dependencies": {},
