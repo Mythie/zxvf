@@ -1,0 +1,13 @@
+.dropzone-enter-active,
+.dropzone-move,
+.dropzone-leave-active {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.dropzone-enter-from {
+  opacity: 0;
+}
+
+.dropzone-leave-to {
+  opacity: 0;
+}

@@ -1,0 +1,30 @@
+.toast-provider-top-left-enter-active,
+.toast-provider-top-left-move,
+.toast-provider-top-left-leave-active,
+.toast-provider-top-right-enter-active,
+.toast-provider-top-right-move,
+.toast-provider-top-right-leave-active,
+.toast-provider-bottom-left-enter-active,
+.toast-provider-bottom-left-move,
+.toast-provider-bottom-left-leave-active,
+.toast-provider-bottom-right-enter-active,
+.toast-provider-bottom-right-move,
+.toast-provider-bottom-right-leave-active {
+  transition: all 0.5s ease;
+}
+
+.toast-provider-top-left-enter-from,
+.toast-provider-top-left-leave-to,
+.toast-provider-bottom-left-enter-from,
+.toast-provider-bottom-left-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.toast-provider-top-right-enter-from,
+.toast-provider-top-right-leave-to,
+.toast-provider-bottom-right-enter-from,
+.toast-provider-bottom-right-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}

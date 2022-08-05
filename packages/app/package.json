@@ -1,0 +1,48 @@
+{
+  "name": "@orderdi/app",
+  "description": "",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "vue-tsc --noEmit",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
+  },
+  "dependencies": {
+    "@vueuse/core": "^8.7.3",
+    "@vueuse/head": "^0.7.6",
+    "firebase": "^9.8.4",
+    "vue": "^3.2.25",
+    "vue-query": "^1.25.0",
+    "vue-router": "^4.0.16",
+    "vue3-popper": "^1.5.0",
+    "zod": "^3.17.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@iconify/json": "^2.1.63",
+    "@vitejs/plugin-vue": "^2.3.3",
+    "@vitejs/plugin-vue-jsx": "^1.3.10",
+    "@vue/test-utils": "^2.0.0",
+    "autoprefixer": "^10.4.7",
+    "babel-loader": "^8.2.5",
+    "cypress": "^10.1.0",
+    "jsdom": "^19.0.0",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.3",
+    "typescript": "^4.7.3",
+    "unplugin-icons": "^0.14.4",
+    "vite": "^2.9.9",
+    "vite-plugin-pages": "^0.24.1",
+    "vite-tsconfig-paths": "^3.5.0",
+    "vitest": "^0.15.1",
+    "vue-eslint-parser": "^9.0.2",
+    "vue-loader": "^16.8.3",
+    "vue-tsc": "^0.34.7"
+  }
+}
