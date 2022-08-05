@@ -6,20 +6,20 @@ import { Button } from '~/styleguide/Button';
 import { Table } from '~/styleguide/Table';
 import { TableColumn } from '~/styleguide/Table/Table.types';
 
-import { useFindProductGroupsQuery } from '~/common/api/productGroup/findProductGroups';
+import { useFindDevicesQuery } from '~/common/api/device/findDevices';
 import { Dashboard } from '~/layouts/Dashboard';
 
 import PlusIcon from '~icons/heroicons-outline/plus';
 
-export const ProductGroupsIndexPage = defineComponent({
-  name: 'ProductGroupsIndexPage',
+export const DevicesIndexPage = defineComponent({
+  name: 'DevicesIndexPage',
 
   setup() {
     useHead({
       title: 'Hello World - Homepage',
     });
 
-    const { data, isLoading, isError } = useFindProductGroupsQuery();
+    const { data, isLoading, isError } = useFindDevicesQuery();
 
     const columns = ref<TableColumn[]>([
       {
@@ -43,14 +43,14 @@ export const ProductGroupsIndexPage = defineComponent({
   },
 });
 
-ProductGroupsIndexPage.getLayout = (children: VNode) => (
+DevicesIndexPage.getLayout = (children: VNode) => (
   <Dashboard>
     {{
       header: () => (
         <>
-          <h1 class="text-lg font-medium text-gray-700">Product Groups</h1>
+          <h1 class="text-lg font-medium text-gray-700">Devices</h1>
 
-          <RouterLink to="/product-groups/new">
+          <RouterLink to="/devices/new">
             <Button variant={'secondary'} size={'md'} rightIcon={<PlusIcon />}>
               New
             </Button>
@@ -62,4 +62,4 @@ ProductGroupsIndexPage.getLayout = (children: VNode) => (
   </Dashboard>
 );
 
-export default ProductGroupsIndexPage;
+export default DevicesIndexPage;

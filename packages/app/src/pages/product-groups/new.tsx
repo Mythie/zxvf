@@ -21,16 +21,16 @@ export const NewProductGroupPage = defineComponent({
 
     const formId = ref(uuidv4());
 
-    const product = ref<TBaseProductGroup>({
+    const productGroup = ref<TBaseProductGroup>({
       name: '',
       description: '',
     });
 
-    const validator = useFormValidator(product, ZBaseProductGroup);
+    const validator = useFormValidator(productGroup, ZBaseProductGroup);
 
     const vmodel = <T extends keyof TBaseProductGroup>(field: T) => {
       return (value: TBaseProductGroup[T]) => {
-        product.value = { ...product.value, [field]: value };
+        productGroup.value = { ...productGroup.value, [field]: value };
       };
     };
 
@@ -58,7 +58,7 @@ export const NewProductGroupPage = defineComponent({
 
                 $toast.info('Saving...', 'bottom-right', 5000);
 
-                onFormSubmit.mutate({ id: formId.value, ...product.value });
+                onFormSubmit.mutate({ id: formId.value, ...productGroup.value });
               }}
               onKeydown={onFormKeydown}
             >
@@ -67,11 +67,11 @@ export const NewProductGroupPage = defineComponent({
                 description="Lorem ipsum dolor amut blah blah"
                 error={validator.errors['name']?.message}
               >
-                <NativeInput modelValue={product.value.name} onUpdate:modelValue={vmodel('name')} type="text" />
+                <NativeInput v-model={productGroup.value.name} type="text" />
               </FormItem>
 
               <FormItem label="Description" description="asd" error={validator.errors['description']?.message}>
-                <Textarea v-model={product.value.description} />
+                <Textarea v-model={productGroup.value.description} />
               </FormItem>
 
               <div class="flex w-full flex-row-reverse items-center justify-between">

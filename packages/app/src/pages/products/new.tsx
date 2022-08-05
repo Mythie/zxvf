@@ -104,7 +104,7 @@ export const NewProductPage = defineComponent({
                   description="Lorem ipsum dolor amut blah blah"
                   error={validator.errors['name']?.message}
                 >
-                  <NativeInput modelValue={product.value.name} onUpdate:modelValue={vmodel('name')} type="text" />
+                  <NativeInput v-model={product.value.name} type="text" />
                 </FormItem>
 
                 <FormItem class="lg:w-1/2" label="Price" description="asd" error={validator.errors['price']?.message}>

@@ -1,15 +1,15 @@
 import { doc, DocumentReference } from '@firebase/firestore';
-import { PRODUCT_GROUPS_COLLECTION, TProduct } from '@orderdi/types';
+import { DEVICES_COLLECTION, TDevice } from '@orderdi/types';
 
 import { useFirestore } from '~/composables/firebase';
 import { useRealtimeDocumentQuery } from '~/composables/vueQuery';
 
-const getProductById = (id: string) => {
+const getDeviceById = (id: string) => {
   const firestore = useFirestore();
 
-  return doc(firestore, PRODUCT_GROUPS_COLLECTION, id) as DocumentReference<TProduct>;
+  return doc(firestore, DEVICES_COLLECTION, id) as DocumentReference<TDevice>;
 };
 
-export const useGetProductByIdQuery = (id: string) => {
-  return useRealtimeDocumentQuery([PRODUCT_GROUPS_COLLECTION, id], getProductById(id));
+export const useGetDeviceByIdQuery = (id: string) => {
+  return useRealtimeDocumentQuery([DEVICES_COLLECTION, id], getDeviceById(id));
 };

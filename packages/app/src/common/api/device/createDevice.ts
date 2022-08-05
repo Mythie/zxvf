@@ -1,43 +1,43 @@
 import { httpsCallable } from '@firebase/functions';
 import { uuidv4 } from '@firebase/util';
 import {
-  CreateProductGroupRequest,
-  CreateProductGroupResponse,
-  TBaseProductGroup,
+  CreateDeviceRequest,
+  CreateDeviceResponse,
+  TBaseDevice,
   MaybePromise,
-  PRODUCT_GROUPS_COLLECTION,
+  DEVICES_COLLECTION,
 } from '@orderdi/types';
 import { useMutation, useQueryClient } from 'vue-query';
 
 import { useFunctions } from '~/composables/firebase';
 
-const createProductGroup = async (payload: TBaseProductGroup & { id?: string }) => {
-  const { id, ...productGroup } = payload;
+const createDevice = async (payload: TBaseDevice & { id?: string }) => {
+  const { id, ...device } = payload;
 
-  const productGroupId = id || uuidv4();
+  const deviceId = id || uuidv4();
 
   const functions = useFunctions();
 
-  const result = await httpsCallable<CreateProductGroupRequest, CreateProductGroupResponse>(
+  const result = await httpsCallable<CreateDeviceRequest, CreateDeviceResponse>(
     functions,
-    'createProductGroup',
+    'createDevice',
   )({
-    id: productGroupId,
-    ...productGroup,
+    id: deviceId,
+    ...device,
   });
 
   return result.data;
 };
 
-export const useCreateProductGroupMutation = (
-  onSuccess?: (_data: CreateProductGroupResponse) => MaybePromise<void>,
+export const useCreateDeviceMutation = (
+  onSuccess?: (_data: CreateDeviceResponse) => MaybePromise<void>,
   onError?: (_err: unknown) => MaybePromise<void>,
 ) => {
   const queryClient = useQueryClient();
 
-  return useMutation(createProductGroup, {
+  return useMutation(createDevice, {
     onSuccess: (data) => {
-      queryClient.invalidateQueries(PRODUCT_GROUPS_COLLECTION);
+      queryClient.invalidateQueries(DEVICES_COLLECTION);
 
       onSuccess && onSuccess(data);
     },

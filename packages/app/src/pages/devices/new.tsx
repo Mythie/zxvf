@@ -1,5 +1,5 @@
 import { uuidv4 } from '@firebase/util';
-import { TBaseProductGroup, ZBaseProductGroup } from '@orderdi/types';
+import { TBaseDevice, ZBaseDevice } from '@orderdi/types';
 import { defineComponent, inject, ref, VNode } from 'vue';
 
 import { Button } from '~/styleguide/Button';
@@ -8,42 +8,38 @@ import { NativeInput } from '~/styleguide/NativeInput';
 import { Textarea } from '~/styleguide/Textarea';
 import { ToastInject, TOAST_PROVIDER, useToast } from '~/styleguide/Toast';
 
-import { useCreateProductGroupMutation } from '~/common/api/productGroup/createProductGroup';
+import { useCreateDeviceMutation } from '~/common/api/device/createDevice';
 import { useFormValidator } from '~/composables/validation';
 import { Dashboard } from '~/layouts/Dashboard';
 import { router } from '~/router';
 
-export const NewProductGroupPage = defineComponent({
-  name: 'NewProductGroupPage',
+export const NewDevicePage = defineComponent({
+  name: 'NewDevicePage',
 
   setup: () => {
     const $toast = useToast(inject<ToastInject>(TOAST_PROVIDER));
 
     const formId = ref(uuidv4());
 
-    const product = ref<TBaseProductGroup>({
+    const device = ref<TBaseDevice>({
       name: '',
       description: '',
-      price: 0,
-      ingredients: [],
-      modifications: [],
-      images: [],
-      group: null,
+      passcode: '',
     });
 
-    const validator = useFormValidator(product, ZBaseProductGroup);
+    const validator = useFormValidator(device, ZBaseDevice);
 
-    const vmodel = <T extends keyof TBaseProductGroup>(field: T) => {
-      return (value: TBaseProductGroup[T]) => {
-        product.value = { ...product.value, [field]: value };
+    const vmodel = <T extends keyof TBaseDevice>(field: T) => {
+      return (value: TBaseDevice[T]) => {
+        device.value = { ...device.value, [field]: value };
       };
     };
 
-    const onFormSubmit = useCreateProductGroupMutation((data) => {
-      router.push('/product-groups');
+    const onFormSubmit = useCreateDeviceMutation((data) => {
+      router.push('/devices');
       console.log('called router');
 
-      $toast.success(`Product Group "${data.name}" created successfully!`, 'bottom-right', 5000);
+      $toast.success(`Device "${data.name}" created successfully!`, 'bottom-right', 5000);
     });
 
     const onFormKeydown = (event: KeyboardEvent) => {
@@ -63,20 +59,32 @@ export const NewProductGroupPage = defineComponent({
 
                 $toast.info('Saving...', 'bottom-right', 5000);
 
-                onFormSubmit.mutate(product.value);
+                onFormSubmit.mutate({ id: formId.value, ...device.value });
               }}
               onKeydown={onFormKeydown}
             >
-              <FormItem
-                label="Name"
-                description="Lorem ipsum dolor amut blah blah"
-                error={validator.errors['name']?.message}
-              >
-                <NativeInput modelValue={product.value.name} onUpdate:modelValue={vmodel('name')} type="text" />
-              </FormItem>
+              <div class="flex w-full flex-col gap-y-6 lg:flex-row lg:items-center lg:gap-x-6">
+                <FormItem
+                  class="lg:w-1/2"
+                  label="Name"
+                  description="Lorem ipsum dolor amut blah blah"
+                  error={validator.errors['name']?.message}
+                >
+                  <NativeInput v-model={device.value.name} type="text" />
+                </FormItem>
+
+                <FormItem
+                  class="lg:w-1/2"
+                  label="Passcode"
+                  description="asd"
+                  error={validator.errors['price']?.message}
+                >
+                  <NativeInput v-model={device.value.passcode} type="password" />
+                </FormItem>
+              </div>
 
               <FormItem label="Description" description="asd" error={validator.errors['description']?.message}>
-                <Textarea v-model={product.value.description} />
+                <Textarea v-model={device.value.description} />
               </FormItem>
 
               <div class="flex w-full flex-row-reverse items-center justify-between">
@@ -86,7 +94,7 @@ export const NewProductGroupPage = defineComponent({
                   variant="primary"
                   type="submit"
                 >
-                  Create Product Group
+                  Create Device
                 </Button>
               </div>
             </form>
@@ -99,12 +107,12 @@ export const NewProductGroupPage = defineComponent({
   },
 });
 
-NewProductGroupPage.getLayout = (children: VNode) => (
+NewDevicePage.getLayout = (children: VNode) => (
   <Dashboard>
     {{
       header: () => (
         <>
-          <h1 class="text-lg font-medium text-gray-700">New ProductGroup</h1>
+          <h1 class="text-lg font-medium text-gray-700">New Device</h1>
         </>
       ),
       default: () => children,
@@ -112,4 +120,4 @@ NewProductGroupPage.getLayout = (children: VNode) => (
   </Dashboard>
 );
 
-export default NewProductGroupPage;
+export default NewDevicePage;
