@@ -12,7 +12,9 @@ export interface NativeInputComponentProps {
   type: HTMLInputElement['type'];
   error: string;
   leftIcon: VNode | null;
+  allowLeftIconClick: boolean;
   rightIcon: VNode | null;
+  allowRightIconClick: boolean;
 }
 
 export const NativeInputComponent = defineComponent({
@@ -55,16 +57,27 @@ export const NativeInputComponent = defineComponent({
       default: null,
     },
 
+    allowLeftIconClick: {
+      type: Boolean as PropType<NativeInputComponentProps['allowLeftIconClick']>,
+      default: false,
+    },
+
     rightIcon: {
       type: Object as PropType<NativeInputComponentProps['rightIcon']>,
       default: null,
+    },
+
+    allowRightIconClick: {
+      type: Boolean as PropType<NativeInputComponentProps['allowRightIconClick']>,
+      default: false,
     },
   },
 
   emits: ['update:modelValue'],
 
   setup: (props, { attrs, emit }) => {
-    const { id, focusRing, size, type, error, leftIcon, rightIcon } = toRefs(props);
+    const { id, focusRing, size, type, error, leftIcon, allowLeftIconClick, rightIcon, allowRightIconClick } =
+      toRefs(props);
 
     const classes = computed(() => {
       return {
@@ -100,13 +113,23 @@ export const NativeInputComponent = defineComponent({
           />
 
           {leftIcon.value && (
-            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-sm text-gray-500">
+            <div
+              class={{
+                'pointer-events-none': !allowLeftIconClick.value,
+                'absolute inset-y-0 left-0 flex items-center pl-3 text-sm text-gray-500': true,
+              }}
+            >
               {leftIcon.value}
             </div>
           )}
 
           {rightIcon.value && (
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-sm text-gray-500">
+            <div
+              class={{
+                'pointer-events-none': !allowRightIconClick.value,
+                'absolute inset-y-0 right-0 flex items-center pr-3 text-sm text-gray-500': true,
+              }}
+            >
               {rightIcon.value}
             </div>
           )}

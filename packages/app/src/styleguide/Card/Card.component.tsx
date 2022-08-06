@@ -1,4 +1,4 @@
-import { defineComponent, PropType, toRefs } from 'vue';
+import { computed, defineComponent, PropType } from 'vue';
 
 export interface CardComponentProps {
   title: string;
@@ -15,11 +15,21 @@ export const CardComponent = defineComponent({
   },
 
   setup: (props, { slots }) => {
-    const { title } = toRefs(props);
+    const title = computed(() => {
+      if (props.title) {
+        return <h4 class="pb-3 text-lg font-medium leading-tight">{props.title}</h4>;
+      }
+
+      if (slots.title) {
+        return slots.title();
+      }
+
+      return null;
+    });
 
     return () => (
-      <div class="w-full rounded-md border border-gray-50 bg-white p-5 shadow dark:border-slate-500 dark:bg-slate-700 dark:text-white">
-        {title && <h4 class="pb-3 text-lg font-medium leading-tight">{title.value}</h4>}
+      <div class=" relative w-full rounded-md border border-gray-50 bg-white p-5 shadow dark:border-slate-500 dark:bg-slate-700 dark:text-white">
+        {title.value}
 
         <div class="leading-relaxed">{slots.default && slots.default()}</div>
       </div>

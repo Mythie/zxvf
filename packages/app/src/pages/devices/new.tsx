@@ -1,5 +1,6 @@
 import { uuidv4 } from '@firebase/util';
 import { TBaseDevice, TDeviceType, ZBaseDevice } from '@orderdi/types';
+import { getRandomId } from '@orderdi/util';
 import { defineComponent, inject, reactive, ref, VNode } from 'vue';
 
 import { Button } from '~/styleguide/Button';
@@ -14,6 +15,8 @@ import { useFormValidator } from '~/composables/validation';
 import { useVModelRef } from '~/composables/vmodel';
 import { Dashboard } from '~/layouts/Dashboard';
 import { router } from '~/router';
+
+import RefreshIcon from '~icons/heroicons-outline/refresh';
 
 const DEVICE_TYPE_OPTIONS: Array<{ label: string; value: TDeviceType }> = [
   {
@@ -56,6 +59,10 @@ export const NewDevicePage = defineComponent({
       }
     };
 
+    const onGenerateNameClick = () => {
+      device.value.name = getRandomId();
+    };
+
     return () => {
       return (
         <main class="mx-auto flex flex-col items-center justify-center font-sans leading-loose">
@@ -78,7 +85,22 @@ export const NewDevicePage = defineComponent({
                   description="Lorem ipsum dolor amut blah blah"
                   error={validator.errors['name']?.message}
                 >
-                  <NativeInput {...useVModelRef(device, 'name')} type="text" />
+                  <NativeInput
+                    {...useVModelRef(device, 'name')}
+                    type="text"
+                    role="note"
+                    allowLeftIconClick
+                    leftIcon={
+                      <button
+                        type="button"
+                        class="cursor-pointer hover:text-blue-400"
+                        onClick={onGenerateNameClick}
+                        title={'Generate random name'}
+                      >
+                        <RefreshIcon />
+                      </button>
+                    }
+                  />
                 </FormItem>
 
                 <FormItem
