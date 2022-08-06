@@ -38,7 +38,7 @@ export const FormItemComponent = defineComponent({
     const defaultSlot = computed(() => slots.default?.());
 
     watchEffect(() => {
-      const inputs = formBlock.value?.querySelectorAll('input,textarea') ?? [];
+      const inputs = formBlock.value?.querySelectorAll('input,textarea,select') ?? [];
 
       const [input] = Array.from(inputs).filter((i) => !i.hasAttribute('no-focus'));
 

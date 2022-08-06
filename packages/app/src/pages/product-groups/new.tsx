@@ -10,6 +10,7 @@ import { ToastInject, TOAST_PROVIDER, useToast } from '~/styleguide/Toast';
 
 import { useCreateProductGroupMutation } from '~/common/api/productGroup/createProductGroup';
 import { useFormValidator } from '~/composables/validation';
+import { useVModelRef } from '~/composables/vmodel';
 import { Dashboard } from '~/layouts/Dashboard';
 import { router } from '~/router';
 
@@ -27,12 +28,6 @@ export const NewProductGroupPage = defineComponent({
     });
 
     const validator = useFormValidator(productGroup, ZBaseProductGroup);
-
-    const vmodel = <T extends keyof TBaseProductGroup>(field: T) => {
-      return (value: TBaseProductGroup[T]) => {
-        productGroup.value = { ...productGroup.value, [field]: value };
-      };
-    };
 
     const onFormSubmit = useCreateProductGroupMutation((data) => {
       router.push('/product-groups');
@@ -67,11 +62,11 @@ export const NewProductGroupPage = defineComponent({
                 description="Lorem ipsum dolor amut blah blah"
                 error={validator.errors['name']?.message}
               >
-                <NativeInput v-model={productGroup.value.name} type="text" />
+                <NativeInput {...useVModelRef(productGroup, 'name')} type="text" />
               </FormItem>
 
               <FormItem label="Description" description="asd" error={validator.errors['description']?.message}>
-                <Textarea v-model={productGroup.value.description} />
+                <Textarea {...useVModelRef(productGroup, 'description')} />
               </FormItem>
 
               <div class="flex w-full flex-row-reverse items-center justify-between">

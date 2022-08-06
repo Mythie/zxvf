@@ -1,17 +1,30 @@
 import { uuidv4 } from '@firebase/util';
-import { TBaseDevice, ZBaseDevice } from '@orderdi/types';
-import { defineComponent, inject, ref, VNode } from 'vue';
+import { TBaseDevice, TDeviceType, ZBaseDevice } from '@orderdi/types';
+import { defineComponent, inject, reactive, ref, VNode } from 'vue';
 
 import { Button } from '~/styleguide/Button';
 import { FormItem } from '~/styleguide/FormItem';
 import { NativeInput } from '~/styleguide/NativeInput';
+import { NativeSelect } from '~/styleguide/NativeSelect';
 import { Textarea } from '~/styleguide/Textarea';
 import { ToastInject, TOAST_PROVIDER, useToast } from '~/styleguide/Toast';
 
 import { useCreateDeviceMutation } from '~/common/api/device/createDevice';
 import { useFormValidator } from '~/composables/validation';
+import { useVModelRef } from '~/composables/vmodel';
 import { Dashboard } from '~/layouts/Dashboard';
 import { router } from '~/router';
+
+const DEVICE_TYPE_OPTIONS: Array<{ label: string; value: TDeviceType }> = [
+  {
+    label: 'Point of Sale System',
+    value: 'pos',
+  },
+  {
+    label: 'Order Tracking Display',
+    value: 'order-tracker',
+  },
+];
 
 export const NewDevicePage = defineComponent({
   name: 'NewDevicePage',
@@ -25,15 +38,10 @@ export const NewDevicePage = defineComponent({
       name: '',
       description: '',
       passcode: '',
+      type: 'pos',
     });
 
     const validator = useFormValidator(device, ZBaseDevice);
-
-    const vmodel = <T extends keyof TBaseDevice>(field: T) => {
-      return (value: TBaseDevice[T]) => {
-        device.value = { ...device.value, [field]: value };
-      };
-    };
 
     const onFormSubmit = useCreateDeviceMutation((data) => {
       router.push('/devices');
@@ -63,28 +71,32 @@ export const NewDevicePage = defineComponent({
               }}
               onKeydown={onFormKeydown}
             >
-              <div class="flex w-full flex-col gap-y-6 lg:flex-row lg:items-center lg:gap-x-6">
+              <div class="flex w-full flex-col gap-y-6 lg:flex-row lg:items-start lg:gap-x-6">
                 <FormItem
                   class="lg:w-1/2"
                   label="Name"
                   description="Lorem ipsum dolor amut blah blah"
                   error={validator.errors['name']?.message}
                 >
-                  <NativeInput v-model={device.value.name} type="text" />
+                  <NativeInput {...useVModelRef(device, 'name')} type="text" />
                 </FormItem>
 
                 <FormItem
                   class="lg:w-1/2"
                   label="Passcode"
                   description="asd"
-                  error={validator.errors['price']?.message}
+                  error={validator.errors['passcode']?.message}
                 >
-                  <NativeInput v-model={device.value.passcode} type="password" />
+                  <NativeInput {...useVModelRef(device, 'passcode')} type="password" />
                 </FormItem>
               </div>
 
+              <FormItem label="Device Type" description="asd" error={validator.errors['type']?.message}>
+                <NativeSelect {...useVModelRef(device, 'type')} options={DEVICE_TYPE_OPTIONS} />
+              </FormItem>
+
               <FormItem label="Description" description="asd" error={validator.errors['description']?.message}>
-                <Textarea v-model={device.value.description} />
+                <Textarea {...useVModelRef(device, 'description')} />
               </FormItem>
 
               <div class="flex w-full flex-row-reverse items-center justify-between">

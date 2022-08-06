@@ -7,7 +7,7 @@ export type TDeviceType = typeof DEVICE_TYPES[number];
 export const ZBaseDevice = z.object({
   name: z.string().min(1),
   description: z.string(),
-  passcode: z.string().min(1),
+  passcode: z.string().min(1).max(6),
   type: z.enum(DEVICE_TYPES),
 });
 

@@ -15,6 +15,7 @@ import { RepeatingNativeInput } from '~/components/RepeatingNativeInput';
 import { useIsAuthenticated } from '~/composables/authentication';
 import { useStorage } from '~/composables/firebase';
 import { useFormValidator } from '~/composables/validation';
+import { useVModelRef } from '~/composables/vmodel';
 import { Dashboard } from '~/layouts/Dashboard';
 import { router } from '~/router';
 
@@ -37,12 +38,6 @@ export const NewProductPage = defineComponent({
     });
 
     const validator = useFormValidator(product, ZBaseProduct);
-
-    const vmodel = <T extends keyof TBaseProduct>(field: T) => {
-      return (value: TBaseProduct[T]) => {
-        product.value = { ...product.value, [field]: value };
-      };
-    };
 
     const onImageUpload = async (file: File): Promise<string> => {
       const storage = useStorage();
@@ -104,28 +99,32 @@ export const NewProductPage = defineComponent({
                   description="Lorem ipsum dolor amut blah blah"
                   error={validator.errors['name']?.message}
                 >
-                  <NativeInput v-model={product.value.name} type="text" />
+                  <NativeInput {...useVModelRef(product, 'name')} type="text" />
                 </FormItem>
 
                 <FormItem class="lg:w-1/2" label="Price" description="asd" error={validator.errors['price']?.message}>
-                  <NativeInput v-model={product.value.price} type="number" leftIcon={<span>$</span>} />
+                  <NativeInput {...useVModelRef(product, 'price')} type="number" leftIcon={<span>$</span>} />
                 </FormItem>
               </div>
 
               <FormItem label="Description" description="asd" error={validator.errors['description']?.message}>
-                <Textarea v-model={product.value.description} />
+                <Textarea {...useVModelRef(product, 'description')} />
               </FormItem>
 
               <FormItem label="Ingredients" description="asd" error={validator.errors['ingredients']?.message}>
-                <RepeatingNativeInput v-model={product.value.ingredients} type="text" />
+                <RepeatingNativeInput {...useVModelRef(product, 'ingredients')} type="text" />
               </FormItem>
 
               <FormItem label="Modifications" description="asd" error={validator.errors['modifications']?.message}>
-                <RepeatingNativeInput v-model={product.value.modifications} type="text" />
+                <RepeatingNativeInput {...useVModelRef(product, 'modifications')} type="text" />
               </FormItem>
 
               <FormItem label="Images" description="asd" error={validator.errors['images']?.message}>
-                <Dropzone v-model={product.value.images} onFileUpload={onImageUpload} onFileRemove={onImageRemove} />
+                <Dropzone
+                  {...useVModelRef(product, 'images')}
+                  onFileUpload={onImageUpload}
+                  onFileRemove={onImageRemove}
+                />
               </FormItem>
 
               <div class="flex w-full flex-row-reverse items-center justify-between">
